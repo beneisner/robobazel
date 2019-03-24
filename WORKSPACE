@@ -65,6 +65,28 @@ http_archive(
    urls = ["https://github.com/eigenteam/eigen-git-mirror/archive/3.3.5.tar.gz"],
 )
 
+# ZLib.
+http_archive(
+    name = "zlib",
+    build_file_content = all_content,
+    sha256 = "4ff941449631ace0d4d203e3483be9dbc9da454084111f97ea0a2114e19bf066",
+    strip_prefix = "zlib-1.2.11",
+    urls = [
+        "https://zlib.net/zlib-1.2.11.tar.xz",
+    ],
+)
+
+# LibPNG.
+http_archive(
+    name = "libpng",
+    build_file_content = all_content,
+    sha256 = "2f1e960d92ce3b3abd03d06dfec9637dfbd22febf107a536b44f7a47c60659f6",
+    strip_prefix = "libpng-1.6.34",
+    urls = [
+        "http://ftp-osl.osuosl.org/pub/libpng/src/libpng16/libpng-1.6.34.tar.xz",
+    ],
+)
+
 ###############################################################################
 # Go dependencies.
 ###############################################################################
