@@ -87,6 +87,24 @@ http_archive(
     ],
 )
 
+# TIFF.
+http_archive(
+    name = "libtiff",
+    build_file_content = all_content,
+    strip_prefix = "libtiff-v4.0.10",
+    urls = [
+        "https://gitlab.com/libtiff/libtiff/-/archive/v4.0.10/libtiff-v4.0.10.tar.gz",
+    ],
+)
+
+# OpenCV 4 source code repository.
+http_archive(
+    name = "opencv4",
+    build_file_content = all_content,
+    strip_prefix = "opencv-4.0.1",
+    urls = ["https://github.com/opencv/opencv/archive/4.0.1.tar.gz"],
+)
+
 ###############################################################################
 # Go dependencies.
 ###############################################################################
