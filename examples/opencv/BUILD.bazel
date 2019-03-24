@@ -1,0 +1,5 @@
+cc_binary(
+	name = "opencv_demo",
+	srcs = ["opencv_demo.cpp"],
+	deps = ["//:opencv"],
+)
