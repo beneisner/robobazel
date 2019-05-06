@@ -16,9 +16,9 @@ http_archive(
 # includes gRPC.
 http_archive(
     name = "build_stack_rules_proto",
-    urls = ["https://github.com/stackb/rules_proto/archive/91cbae9bd71a9c51406014b8b3c931652fb6e660.tar.gz"],
     sha256 = "5474d1b83e24ec1a6db371033a27ff7aff412f2b23abba86fedd902330b61ee6",
     strip_prefix = "rules_proto-91cbae9bd71a9c51406014b8b3c931652fb6e660",
+    urls = ["https://github.com/stackb/rules_proto/archive/91cbae9bd71a9c51406014b8b3c931652fb6e660.tar.gz"],
 )
 
 ###############################################################################
@@ -26,10 +26,11 @@ http_archive(
 ###############################################################################
 
 # Google ABSL library.
-git_repository(
-    name = "com_google_absl",
-    remote = "https://github.com/abseil/abseil-cpp.git",
-    commit = "426eaa4aa44e4580418bee46c1bd13911151bfb1",
+http_archive(
+  name = "com_google_absl",
+  urls = ["https://github.com/abseil/abseil-cpp/archive/7c7754fb3ed9ffb57d35fe8658f3ba4d73a31e72.zip"],  # 2019-03-14
+  strip_prefix = "abseil-cpp-7c7754fb3ed9ffb57d35fe8658f3ba4d73a31e72",
+  sha256 = "71d00d15fe6370220b6685552fb66e5814f4dd2e130f3836fc084c894943753f",
 )
 
 ###############################################################################
@@ -41,28 +42,32 @@ all_content = """filegroup(name = "all", srcs = glob(["**"]), visibility = ["//v
 
 # Rule repository
 http_archive(
-   name = "rules_foreign_cc",
-   strip_prefix = "rules_foreign_cc-master",
-   url = "https://github.com/bazelbuild/rules_foreign_cc/archive/master.zip",
+    name = "rules_foreign_cc",
+    strip_prefix = "rules_foreign_cc-master",
+    url = "https://github.com/bazelbuild/rules_foreign_cc/archive/master.zip",
+    sha256 = "ea5727126b475b30c387e7bdb5f09991985110176c7a3b9a7243b15ac97ab472",
 )
 
 load("@rules_foreign_cc//:workspace_definitions.bzl", "rules_foreign_cc_dependencies")
+
 rules_foreign_cc_dependencies()
 
 # OpenBLAS source code repository
 http_archive(
-   name = "openblas",
-   build_file_content = all_content,
-   strip_prefix = "OpenBLAS-0.3.2",
-   urls = ["https://github.com/xianyi/OpenBLAS/archive/v0.3.2.tar.gz"],
+    name = "openblas",
+    build_file_content = all_content,
+    strip_prefix = "OpenBLAS-0.3.2",
+    urls = ["https://github.com/xianyi/OpenBLAS/archive/v0.3.2.tar.gz"],
+    sha256 = "e8ba64f6b103c511ae13736100347deb7121ba9b41ba82052b1a018a65c0cb15",
 )
 
 # Eigen source code repository
 http_archive(
-   name = "eigen",
-   build_file_content = all_content,
-   strip_prefix = "eigen-git-mirror-3.3.5",
-   urls = ["https://github.com/eigenteam/eigen-git-mirror/archive/3.3.5.tar.gz"],
+    name = "eigen",
+    build_file_content = all_content,
+    strip_prefix = "eigen-git-mirror-3.3.5",
+    urls = ["https://github.com/eigenteam/eigen-git-mirror/archive/3.3.5.tar.gz"],
+    sha256 = "992855522dfdd0dea74d903dcd082cdb01c1ae72be5145e2fe646a0892989e43",
 )
 
 # ZLib.
@@ -112,18 +117,21 @@ http_archive(
 # Go rules.
 http_archive(
     name = "io_bazel_rules_go",
-    urls = ["https://github.com/bazelbuild/rules_go/releases/download/0.17.0/rules_go-0.17.0.tar.gz"],
     sha256 = "492c3ac68ed9dcf527a07e6a1b2dcbf199c6bf8b35517951467ac32e421c06c1",
+    urls = ["https://github.com/bazelbuild/rules_go/releases/download/0.17.0/rules_go-0.17.0.tar.gz"],
 )
-load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+
 go_rules_dependencies()
+
 go_register_toolchains()
 
 # Gazelle, for generating Go deps.
 http_archive(
     name = "bazel_gazelle",
-    urls = ["https://github.com/bazelbuild/bazel-gazelle/releases/download/0.16.0/bazel-gazelle-0.16.0.tar.gz"],
     sha256 = "7949fc6cc17b5b191103e97481cf8889217263acf52e00b560683413af204fcb",
+    urls = ["https://github.com/bazelbuild/bazel-gazelle/releases/download/0.16.0/bazel-gazelle-0.16.0.tar.gz"],
 )
 
 ###############################################################################

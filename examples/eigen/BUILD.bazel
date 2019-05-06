@@ -1,5 +1,5 @@
 cc_binary(
     name = "eigen_demo",
     srcs = ["eigen_demo.cc"],
-    deps = ["//:eigen"],
+    deps = ["//third_party/eigen:eigen"],
 )
