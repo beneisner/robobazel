@@ -1,0 +1,16 @@
+load("@rules_foreign_cc//tools/build_defs:cmake.bzl", "cmake_external")
+licenses(["notice"])
+
+filegroup(name = "all", srcs = glob(["**"]), visibility = ["//visibility:public"])
+
+cmake_external(
+    name = "libpng",
+    cache_entries = {
+        "ZLIB_ROOT": "$EXT_BUILD_DEPS/libz",
+    },
+    lib_source = "@libpng//:all",
+    out_include_dir = "include/libpng16",
+    static_libraries = ["libpng16.a"],
+    deps = ["@zlib//:zlib"],
+    visibility = ["//visibility:public"],
+)
