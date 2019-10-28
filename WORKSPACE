@@ -53,16 +53,21 @@ rules_foreign_cc_dependencies()
 
 load("//:load.bzl",
     "load_eigen",
+    "load_folly",
     "load_libpng",
     "load_openblas",
     "load_libtiff",
     "load_zlib",
+    "load_double_conversion",
 )
 load_eigen(use_cmake=True)
 load_libpng(use_cmake=True)
 load_libtiff(use_cmake=True)
 load_openblas(use_cmake=True)
+load_double_conversion()
+load_folly(use_cmake=True)
 load_zlib()
+
 
 # # OpenCV 4 source code repository.
 # http_archive(
