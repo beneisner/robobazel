@@ -25,7 +25,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # C++ dependencies.
 ###############################################################################
 
-# Google ABSL library.
+# # Google ABSL library.
 # http_archive(
 #   name = "com_google_absl",
 #   urls = ["https://github.com/abseil/abseil-cpp/archive/7c7754fb3ed9ffb57d35fe8658f3ba4d73a31e72.zip"],  # 2019-03-14
@@ -45,7 +45,6 @@ http_archive(
    name = "rules_foreign_cc",
    strip_prefix = "rules_foreign_cc-master",
    url = "https://github.com/bazelbuild/rules_foreign_cc/archive/master.zip",
-   sha256 = "a2e43b2141cddce94999e26de8075031394ac11fb8075de8aa0b8e13905715ed",
 )
 
 load("@rules_foreign_cc//:workspace_definitions.bzl", "rules_foreign_cc_dependencies")
@@ -54,20 +53,24 @@ rules_foreign_cc_dependencies()
 
 load("//:load.bzl",
     "load_eigen",
-    # "load_folly",
+    "load_folly",
     "load_libpng",
     "load_openblas",
     "load_libtiff",
     "load_zlib",
-    # "load_double_conversion",
     "load_libusb",
+    "load_double_conversion",
+    "load_gflags",
+    "load_glog",
 )
 load_eigen(use_cmake=True)
 load_libpng(use_cmake=True)
 load_libtiff(use_cmake=True)
 load_openblas(use_cmake=True)
-# load_double_conversion()
-# load_folly(use_cmake=True)
+load_double_conversion()
+load_gflags()
+load_glog()
+load_folly(use_cmake=True)
 load_zlib()
 load_libusb()
 
@@ -84,7 +87,7 @@ load_libusb()
 # Go dependencies.
 ###############################################################################
 
-# Go rules.
+# # Go rules.
 # http_archive(
 #     name = "io_bazel_rules_go",
 #     sha256 = "492c3ac68ed9dcf527a07e6a1b2dcbf199c6bf8b35517951467ac32e421c06c1",
