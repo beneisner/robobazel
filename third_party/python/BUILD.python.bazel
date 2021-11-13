@@ -1,0 +1,40 @@
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "configure_make")
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "all_srcs",
+    srcs = glob(["**"]),
+)
+
+configure_make(
+    name = "python3",
+    args = ["-j32"],
+    configure_options = [
+        "--enable-optimizations",
+        "CFLAGS='-Dredacted=\"redacted\"'",
+        "--with-openssl=$$EXT_BUILD_DEPS$$/openssl",
+    ],
+    env = {
+        "LDFLAGS": " ".join([
+            "-I$$EXT_BUILD_DEPS$$/zlib/include",
+        ]),
+        "CPPFLAGS": " ".join([
+            "-I$$EXT_BUILD_DEPS$$/zlib/lib",
+        ]),
+    },
+    install_prefix = "bazel_install",
+    lib_source = ":all_srcs",
+    out_binaries = ["python3"],
+    out_data_dirs = ["lib"],
+    deps = [
+        "@openssl",
+        "@zlib",
+    ],
+)
+
+filegroup(
+    name = "python3_bin",
+    srcs = [":python3"],
+    output_group = "python3",
+)

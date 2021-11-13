@@ -1,0 +1,16 @@
+local_repository(
+    name = "robobazel",
+    path = "../",
+)
+
+load("@robobazel//:repositories.bzl", "python_repositories", "zlib_repositories")
+
+python_repositories("3.9")
+
+zlib_repositories()
+
+load("@robobazel//:setup.bzl", "python_setup", "zlib_setup")
+
+python_setup()
+
+zlib_setup()

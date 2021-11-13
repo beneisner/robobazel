@@ -1,0 +1,4 @@
+{
+    "bazel.buildifierFixOnFormat": true,
+    "editor.formatOnSave": true
+}

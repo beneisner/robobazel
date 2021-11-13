@@ -405,3 +405,5 @@ bh_unicode_properties.cache
 GitHub.sublime-settings
 
 # End of https://www.gitignore.io/api/go,c++,bazel,cmake,emacs,python,pycharm,intellij,sublimetext
+
+examples/bazel-*

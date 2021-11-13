@@ -1,4 +1,5 @@
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+# load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+workspace(name = "robobazel")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 ###############################################################################
@@ -25,7 +26,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # C++ dependencies.
 ###############################################################################
 
-# # Google ABSL library.
+# Google ABSL library.
 # http_archive(
 #   name = "com_google_absl",
 #   urls = ["https://github.com/abseil/abseil-cpp/archive/7c7754fb3ed9ffb57d35fe8658f3ba4d73a31e72.zip"],  # 2019-03-14
@@ -41,38 +42,41 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # all_content = """filegroup(name = "all", srcs = glob(["**"]), visibility = ["//visibility:public"])"""
 
 # Rule repository
-http_archive(
-   name = "rules_foreign_cc",
-   strip_prefix = "rules_foreign_cc-master",
-   url = "https://github.com/bazelbuild/rules_foreign_cc/archive/master.zip",
-)
+# http_archive(
+#     name = "rules_foreign_cc",
+#     sha256 = "69023642d5781c68911beda769f91fcbc8ca48711db935a75da7f6536b65047f",
+#     strip_prefix = "rules_foreign_cc-0.6.0",
+#     url = "https://github.com/bazelbuild/rules_foreign_cc/archive/0.6.0.tar.gz",
+# )
 
-load("@rules_foreign_cc//:workspace_definitions.bzl", "rules_foreign_cc_dependencies")
+# load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
 
-rules_foreign_cc_dependencies()
+# # This sets up some common toolchains for building targets. For more details, please see
+# # https://bazelbuild.github.io/rules_foreign_cc/0.6.0/flatten.html#rules_foreign_cc_dependencies
+# rules_foreign_cc_dependencies()
 
-load("//:load.bzl",
-    "load_eigen",
-    "load_folly",
-    "load_libpng",
-    "load_openblas",
-    "load_libtiff",
-    "load_zlib",
-    "load_libusb",
-    "load_double_conversion",
-    "load_gflags",
-    "load_glog",
-)
-load_eigen(use_cmake=True)
-load_libpng(use_cmake=True)
-load_libtiff(use_cmake=True)
-load_openblas(use_cmake=True)
-load_double_conversion()
-load_gflags()
-load_glog()
-load_folly(use_cmake=True)
-load_zlib()
-load_libusb()
+# load("//:load.bzl",
+#     "load_eigen",
+#     "load_folly",
+#     "load_libpng",
+#     "load_openblas",
+#     "load_libtiff",
+#     "load_zlib",
+#     "load_libusb",
+#     "load_double_conversion",
+#     "load_gflags",
+#     "load_glog",
+# )
+# load_eigen(use_cmake=True)
+# load_libpng(use_cmake=True)
+# load_libtiff(use_cmake=True)
+# load_openblas(use_cmake=True)
+# load_double_conversion()
+# load_gflags()
+# load_glog()
+# load_folly(use_cmake=True)
+# load_zlib()
+# load_libusb()
 
 
 # # OpenCV 4 source code repository.
@@ -110,3 +114,14 @@ load_libusb()
 ###############################################################################
 # Python dependencies.
 ###############################################################################
+
+
+
+# load("//:repositories.bzl",
+#     "zlib"
+# )
+
+# zlib()
+
+load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
+# rules_foreign_cc_dependencies()
