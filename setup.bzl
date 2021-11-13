@@ -11,4 +11,3 @@ python_setup = _python_setup
 rules_foreign_cc_setup = _rules_foreign_cc_setup
 rules_python_setup = _rules_python_setup
 zlib_setup = _zlib_setup
-
