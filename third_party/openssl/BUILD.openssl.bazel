@@ -35,6 +35,7 @@ alias(
 
 configure_make(
     name = "openssl_default",
+    args = ["-j8"],
     configure_command = "config",
     configure_in_place = True,
     configure_options = CONFIGURE_OPTIONS,

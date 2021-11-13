@@ -9,6 +9,7 @@ filegroup(
 
 configure_make(
     name = "python3",
+    args = ["-j8"],
     configure_options = [
         "--enable-optimizations",
         "CFLAGS='-Dredacted=\"redacted\"'",
